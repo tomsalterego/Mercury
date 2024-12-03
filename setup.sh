@@ -19,27 +19,30 @@ try() { "$@" || die "${RED}Failed $*"; }
 displayHelp () {
 	printf "\n" &&
 	printf "${bold}${GRE}Script to copy Mercury source files over the Mozilla source tree.${c0}\n" &&
-	printf "${bold}${YEL}Use the --win flag to copy the Windows mozconfig${c0}\n" &&
-	printf "${bold}${YEL}Use the --cross flag to copy the Windows cross-compile mozconfig${c0}\n" &&
-	printf "${bold}${YEL}Use the --cross-avx2 flag to copy the Windows AVX2 cross-compile mozconfig${c0}\n" &&
-	printf "${bold}${YEL}Use the --sse3 flag to make an SSE3 build${c0}\n" &&
-	printf "${bold}${YEL}Use the --win-sse3 flag to make an SSE3 Windows build${c0}\n" &&
-	printf "${bold}${YEL}Use the --sse4 flag to make an SSE4.1 build${c0}\n" &&
-	printf "${bold}${YEL}Use the --win-sse4 flag to make an SSE4.1 Windows build${c0}\n" &&
-	printf "${bold}${YEL}Use the --avx2 flag to make an AVX2 build${c0}\n" &&
-	printf "${bold}${YEL}Use the --win-avx2 flag to make an AVX2 Windows build${c0}\n" &&
-	printf "${bold}${YEL}Use the --debug flag to make a debug Linux build${c0}\n" &&
-	printf "${bold}${YEL}Use the --win-debug flag to make a debug Windows build${c0}\n" &&
-	printf "${bold}${YEL}Use the --mac flag to make a MacOS x64 build${c0}\n" &&
-	printf "${bold}${YEL}Use the --mac-arm flag to make a MacOS arm64 build${c0}\n" &&
-	printf "${bold}${YEL}Use the --mac-cross flag to to copy the MacOS x64 cross-compile mozconfig${c0}\n" &&
-	printf "${bold}${YEL}Use the --mac-arm-cross flag to to copy the MacOS arm64 cross-compile mozconfig${c0}\n" &&
-	printf "${bold}${YEL}Use the --arm64 flag to make a Linux arm64 build${c0}\n" &&
-	printf "${bold}${YEL}Use the --help flag to show this help${c0}\n" &&
+	printf "${bold}${YEL}  Use the --win flag to copy the Windows mozconfig${c0}\n" &&
+	printf "${bold}${YEL}  Use the --cross flag to copy the Windows cross-compile mozconfig${c0}\n" &&
+	printf "${bold}${YEL}  Use the --cross-avx2 flag to copy the Windows AVX2 cross-compile mozconfig${c0}\n" &&
+	printf "${bold}${YEL}  Use the --sse3 flag to make an SSE3 build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --win-sse3 flag to make an SSE3 Windows build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --sse4 flag to make an SSE4.1 build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --win-sse4 flag to make an SSE4.1 Windows build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --avx2 flag to make an AVX2 build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --win-avx2 flag to make an AVX2 Windows build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --debug flag to make a debug Linux build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --win-debug flag to make a debug Windows build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --mac flag to make a MacOS x64 build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --mac-arm flag to make a MacOS arm64 build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --mac-cross flag to to copy the MacOS x64 cross-compile mozconfig${c0}\n" &&
+	printf "${bold}${YEL}  Use the --mac-arm-cross flag to to copy the MacOS arm64 cross-compile mozconfig${c0}\n" &&
+	printf "${bold}${YEL}  Use the --arm64 or --raspi flag to make a Linux arm64 build${c0}\n" &&
+	printf "${bold}${YEL}  Use the --help or -h flag to show this help${c0}\n" &&
 	printf "\n"
 }
 case $1 in
 	--help) displayHelp; exit 0;;
+esac
+case $1 in
+	-h) displayHelp; exit 0;;
 esac
 
 # mozilla source dir env variable
@@ -233,6 +236,9 @@ copyLinuxArm64 () {
 }
 case $1 in
 	--arm64) copyLinuxArm64;
+esac
+case $1 in
+	--raspi) copyLinuxArm64;
 esac
 
 printf "\n" &&
